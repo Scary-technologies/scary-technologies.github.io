@@ -1,35 +1,40 @@
-document.addEventListener('mousemove', (e) => {
-    const card = document.querySelector('.glass-card');
-    if (!card) return;
+// ایجاد سیستم تعاملی صوتی کمکی (صداهای بیپ دیجیتال بسیار ضعیف در هنگام کلیک روی ماژول‌ها)
+// این قابلیت حس سخت‌افزاری بودن کامپیوتر را به کاربر القا می‌کند.
 
-    // محاسبه موقعیت ماوس نسبت به کارت شیشه‌ای
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // اعمال نور پس‌زمینه متحرک بر اساس مختصات ماوس
-    card.style.background = `
-        radial-gradient(
-            800px circle at ${x}px ${y}px,
-            rgba(255, 255, 255, 0.06),
-            transparent 40%
-        ),
-        rgba(255, 255, 255, 0.02)
-    `;
-    
-    card.style.borderColor = `rgba(255, 255, 255, 0.08)`;
-});
-
-// ایجاد جلوه ورودی نرم برای المان‌ها به محض لود شدن
-document.addEventListener('DOMContentLoaded', () => {
-    const card = document.querySelector('.glass-card');
-    if(card) {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
+function playSystemBeep(frequency = 600, duration = 0.04) {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
         
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, 150);
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequency;
+        
+        gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime); // صدا فوق‌العاده آرام تنظیم شده تا آزاردهنده نباشد
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+        // ممانعت مروگرها از پخش صدا پیش از تعامل اول برطرف شد
     }
+}
+
+// گوش دادن به کلیک روی تمام گره‌های مخازن
+document.addEventListener('DOMContentLoaded', () => {
+    const nodes = document.querySelectorAll('.dock-node, .cyber-link-btn, .cluster-box');
+    
+    nodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+            playSystemBeep(800, 0.02); // صدای کلیک ملایم زمان هاور
+        });
+        
+        node.addEventListener('click', () => {
+            playSystemBeep(450, 0.08); // بیپ تایید زمان کلیک
+        });
+    });
 });
+
+console.log("CORE SYSTEM DASHBOARD V3.0 DEPLOYED SUCCESSFULLY.");
