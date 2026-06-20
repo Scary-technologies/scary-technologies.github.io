@@ -1,0 +1,314 @@
+:root {
+    --bg-color: #050508;
+    --neon-green: #00ff66;
+    --neon-cyan: #00f0ff;
+    --text-color: #e0e6ed;
+    --card-bg: rgba(10, 15, 26, 0.8);
+    --border-color: rgba(0, 240, 255, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* بوم پس زمینه ماتریکس */
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+/* استایل ترمینال بوت اولیه */
+#terminalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.terminal-box {
+    width: 80%;
+    max-width: 600px;
+    background: #0a0a0f;
+    border: 2px solid var(--neon-green);
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+    border-radius: 5px;
+}
+
+.terminal-header {
+    background: #14141f;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 255, 102, 0.2);
+}
+
+.terminal-header .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-header .title {
+    margin-left: auto;
+    color: #888;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.terminal-content {
+    padding: 20px;
+    font-family: monospace;
+    color: var(--neon-green);
+    line-height: 1.6;
+    text-align: left;
+    direction: ltr;
+    white-space: pre-wrap;
+}
+
+/* کانتینر اصلی */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* هدر سایبرپانک */
+.cyber-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    padding: 30px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.profile-pic-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 240, 255, 0.5);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+/* افکت گلیچ عنوان */
+.glitch {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+    text-shadow: 0.05em 0 0 var(--neon-cyan), -0.05em -0.025em 0 var(--neon-green);
+}
+
+.cyber-subtitle {
+    color: var(--neon-cyan);
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.header-status {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.status-indicator.online {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--neon-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--neon-green);
+}
+
+/* سکشن‌ها */
+.cyber-section {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--neon-cyan);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.neon-text {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+/* گرید مهارت‌ها */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-card:hover {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* بخش مخازن گیت هاب */
+.category-title {
+    color: var(--neon-green);
+    margin: 25px 0 15px 0;
+}
+
+.repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.repo-card {
+    background: rgba(15, 22, 36, 0.9);
+    border-right: 4px solid var(--neon-cyan);
+    border-left: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.repo-card h4 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.repo-card p {
+    font-size: 14px;
+    color: #a0aec0;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* دکمه‌ها */
+.cyber-btn {
+    align-self: flex-start;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--neon-green);
+    color: var(--neon-green);
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.cyber-btn:hover {
+    background: var(--neon-green);
+    color: #000;
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* فوتر */
+.cyber-footer {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    margin-bottom: 30px;
+}
+
+.social-links {
+    margin: 20px 0;
+}
+
+.social-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.social-btn.github {
+    background: #24292e;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.social-btn.linkedin {
+    background: #0077b5;
+    color: #fff;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #555;
+    margin-top: 20px;
+}
