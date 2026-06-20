@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR-M // Telemetry & Gateway Stress Engine</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="crt-scanlines"></div>
+
+    <div class="dashboard-container">
+        <aside class="panel control-panel">
+            <div class="panel-header">
+                <span class="panel-title">ENGINE // CONFIG_PROMPTS</span>
+                <span class="panel-status-tag">READY</span>
+            </div>
+            
+            <div class="input-group">
+                <label for="targetId">TARGET IDENTIFIER</label>
+                <input type="text" id="targetId" placeholder="e.g., 09121234567" value="09121234567">
+            </div>
+
+            <div class="input-group">
+                <label for="cycleIterations">CYCLE ITERATIONS PER NODE</label>
+                <input type="number" id="cycleIterations" value="2" min="1" max="10">
+            </div>
+
+            <button id="startEngineBtn" class="cyber-action-btn">INITIALIZE PIPELINE</button>
+            <button id="downloadLogBtn" class="cyber-action-btn btn-secondary" disabled>DUMP SESSION LOG</button>
+
+            <div class="system-telemetry-box">
+                <h4>LIVE STATUS CONTROLS</h4>
+                <div class="telemetry-row"><span>PIPELINE:</span> <span id="pipelineStatus" class="text-dim">IDLE</span></div>
+                <div class="telemetry-row"><span>BATCH DELAY:</span> <span class="text-amber">1.2s - 2.8s</span></div>
+                <div class="telemetry-row"><span>CONCURRENCY:</span> <span class="text-cyan">Asynchronous Async/Await</span></div>
+            </div>
+        </aside>
+
+        <main class="panel monitor-panel">
+            <div class="panel-header">
+                <span class="panel-title">MODULE_01 // LIVE_STREAM_DIAGNOSTICS</span>
+                <div class="counter-cluster">
+                    <span class="counter-badge badge-green">OK: <span id="countSuccess">0</span></span>
+                    <span class="counter-badge badge-red">FAIL: <span id="countFail">0</span></span>
+                </div>
+            </div>
+
+            <div id="terminalStream" class="terminal-body">
+                <div class="system-msg">[SYSTEM] Engine initialized nominal. Input target and deploy configuration pipeline.</div>
+            </div>
+
+            <div class="progress-container">
+                <div id="pipelineProgress" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="live-ticker">
+        <div class="ticker-content">
+            SECURE_NODE_ONLINE // PORT_MONITOR: ACTIVE // PAYLOAD_COMPILER: READY // TELEMETRY_STREAM: LINKED...
+        </div>
+    </div>
+
+</body>
+</html>
