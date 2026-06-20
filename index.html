@@ -3,119 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PR-M | ارشد مهندسی کامپیوتر و امنیت شبکه</title>
+    <title>PR-M | مرکز توسعه و امنیت شبکه</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-    <canvas id="matrixCanvas"></canvas>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
 
-    <div id="terminalOverlay">
-        <div class="terminal-box">
-            <div class="terminal-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="title">SYSTEM_BOOT.EXE</span>
-            </div>
-            <div class="terminal-content" id="terminalText"></div>
-        </div>
-    </div>
-
-    <div class="main-container">
-        
-        <header class="cyber-header">
-            <div class="glitch-wrapper">
-                <div class="profile-pic-container">
-                    <img src="https://avatars.githubusercontent.com/u/22888085?v=4" alt="PR-M Logo" class="profile-img">
-                    <div class="scanline"></div>
-                </div>
-                <h1 class="glitch" data-text="PR-M">PR-M</h1>
-                <p class="cyber-subtitle">Senior Computer Engineer | Network Specialist | Web Developer</p>
-            </div>
-            <div class="header-status">
-                <span class="status-indicator online"></span> <span class="status-text">SYSTEM STATUS: SECURE</span>
-            </div>
-        </header>
-
-        <section class="cyber-section">
-            <h2 class="section-title"><span class="neon-text">//</span> مهارت‌ها و تخصص‌های فنی</h2>
-            <div class="skills-grid">
-                <div class="skill-card" data-tilt>
-                    <div class="card-icon">🔒</div>
-                    <h3>Network & Security</h3>
-                    <p>Mikrotik, WAN/MAN/LAN, Network Security, Monitoring</p>
-                </div>
-                <div class="skill-card" data-tilt>
-                    <div class="card-icon">⚡</div>
-                    <h3>System Admin</h3>
-                    <p>VPS Management, Linux (Ubuntu), Database Design, Server Config</p>
-                </div>
-                <div class="skill-card" data-tilt>
-                    <div class="card-icon">🐍</div>
-                    <h3>Python & Automation</h3>
-                    <p>Web Hosting, Automation Tools, Telegram Bots, Scripting</p>
-                </div>
-                <div class="skill-card" data-tilt>
-                    <div class="card-icon">🛒</div>
-                    <h3>WooCommerce & WP</h3>
-                    <p>Custom Plugins, Bulk Update Tools, Optimization (WebP)</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="cyber-section">
-            <h2 class="section-title"><span class="neon-text">//</span> مخازن منتخب گیت‌هاب</h2>
+    <div class="container">
+        <main class="glass-card main-profile">
             
-            <div class="repo-category">
-                <h3 class="category-title">[ 🔧 System & Network Tools ]</h3>
-                <div class="repos-grid">
-                    <div class="repo-card">
-                        <h4>SMS-Baron</h4>
-                        <p>Sms Boomer 4 Fun - SMS automation tool built with Python.</p>
-                        <a href="https://github.com/Scary-technologies/SMS-Baron" target="_blank" class="cyber-btn">مشاهده سورس</a>
+            <header class="profile-header">
+                <div class="avatar-container">
+                    <img src="https://avatars.githubusercontent.com/u/22888085?v=4" alt="PR-M" class="avatar">
+                    <span class="pulse-badge"></span>
+                </div>
+                <h1 class="scary-title">PR-M</h1>
+                <p class="subtitle">Senior Computer Engineer & Network Specialist</p>
+                <div class="tags">
+                    <span class="tag">Network Security</span>
+                    <span class="tag">Python Automation</span>
+                    <span class="tag">SysAdmin</span>
+                </div>
+            </header>
+
+            <hr class="divider">
+
+            <section class="section">
+                <h2 class="section-badge">تخصص‌های کلیدی</h2>
+                <div class="grid-skills">
+                    <div class="skill-item">
+                        <div class="skill-info"><span>مدیریت و امنیت شبکه (Mikrotik, WAN/LAN)</span><span>۹۵٪</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
                     </div>
-                    <div class="repo-card">
-                        <h4>Server-Checker-Script</h4>
-                        <p>بررسی پایداری و وضعیت سرورها با متد چندنخی و ذخیره نتایج فعال.</p>
-                        <a href="https://github.com/Scary-technologies/Server-Checker-Script" target="_blank" class="cyber-btn">مشاهده سورس</a>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>توسعه پایتون و اتوماسیون (Bots, Scripts)</span><span>۹۰٪</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
                     </div>
-                    <div class="repo-card">
-                        <h4>Port-Scanner</h4>
-                        <p>ابزاری ایده‌آل برای کارشناسان امنیت جهت تشخیص آسیب‌پذیری باز بودن پورت‌ها.</p>
-                        <a href="https://github.com/Scary-technologies/Port-Scanner" target="_blank" class="cyber-btn">مشاهده سورس</a>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>مدیریت سرور و لینوکس (VPS, Ubuntu)</span><span>۸۸٪</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 88%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>توسعه وردپرس و ووکامرس (Plugins)</span><span>۸۵٪</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="repo-category">
-                <h3 class="category-title">[ 🛒 WooCommerce & WordPress ]</h3>
-                <div class="repos-grid">
-                    <div class="repo-card">
-                        <h4>WooCommerce Bulk Update</h4>
-                        <p>ابزار مجهز به رابط گرافیکی پایتون جهت به‌روزرسانی انبوه محصولات از طریق REST API.</p>
-                        <a href="https://github.com/Scary-technologies/WooCommerce-Bulk-Product-Update-Tool" target="_blank" class="cyber-btn">مشاهده سورس</a>
+            <section class="section">
+                <h2 class="section-badge">مخازن برجسته گیت‌هاب</h2>
+                <div class="grid-repos">
+                    
+                    <div class="repo-box">
+                        <div class="repo-status">Python / Automation</div>
+                        <h3>SMS-Baron & Server Checker</h3>
+                        <p>ابزارهای هوشمند پایتون جهت بررسی پایداری سرورها به صورت Multi-threaded و اتوماسیون پیامکی.</p>
+                        <a href="https://github.com/Scary-technologies/" target="_blank" class="glass-btn">بررسی سورس ↗</a>
                     </div>
-                    <div class="repo-card">
-                        <h4>WooCommerce-Print-Orders</h4>
-                        <p>افزونه پیشرفته چاپ فاکتورهای ووکامرس با طراحی کاملاً راست‌چین و بهینه.</p>
-                        <a href="https://github.com/Scary-technologies/WooCommerce-Print-Orders" target="_blank" class="cyber-btn">مشاهده سورس</a>
+
+                    <div class="repo-box">
+                        <div class="repo-status">Security / Network</div>
+                        <h3>Port-Scanner & API Scanner</h3>
+                        <p>اسکنرهای پیشرفته و چندنخی برای تست‌های امنیتی، مانیتورینگ شبکه و ارزیابی آسیب‌پذیری‌ها.</p>
+                        <a href="https://github.com/Scary-technologies/" target="_blank" class="glass-btn">بررسی سورس ↗</a>
                     </div>
+
+                    <div class="repo-box">
+                        <div class="repo-status">WordPress / WooCommerce</div>
+                        <h3>Bulk Update & Print Orders</h3>
+                        <p>پلاگین‌ها و اسکریپت‌های اختصاصی متصل به REST API جهت مدیریت انبوه و چاپ فاکتورهای ووکامرس.</p>
+                        <a href="https://github.com/Scary-technologies/" target="_blank" class="glass-btn">بررسی سورس ↗</a>
+                    </div>
+
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <footer class="cyber-footer">
-            <div class="footer-divider"></div>
-            <p>ارتباط مستقیم با مرکز عملیات شبکه (NOC):</p>
-            <div class="social-links">
-                <a href="https://github.com/Scary-technologies/" target="_blank" class="social-btn github">GitHub Profile</a>
-                <a href="https://www.linkedin.com/in/ali-mirshahi-507948248" target="_blank" class="social-btn linkedin">LinkedIn</a>
-            </div>
-            <p class="copyright">© 2026 PR-M | CODENAME: SCARY TECHNOLOGIES</p>
-        </footer>
+            <footer class="profile-footer">
+                <a href="https://github.com/Scary-technologies/" target="_blank" class="action-btn github-btn">
+                    <span>گیت‌هاب مرکز</span>
+                </a>
+                <a href="https://www.linkedin.com/in/ali-mirshahi-507948248" target="_blank" class="action-btn linkedin-btn">
+                    <span>ارتباط در لینکدین</span>
+                </a>
+            </footer>
 
+        </main>
     </div>
 
 </body>
