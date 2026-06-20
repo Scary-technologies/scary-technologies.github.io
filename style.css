@@ -1,12 +1,13 @@
 :root {
-    --grid-bg: #03060a;
-    --panel-bg: #070d14;
-    --border-color: #172a45;
+    --grid-bg: #020406;
+    --panel-bg: #060b11;
+    --border-color: #1b2f4a;
     --neon-cyan: #00f0ff;
     --neon-green: #39ff14;
-    --neon-red: #ff3333;
-    --neon-purple: #b026ff;
-    --text-white: #f1f7fe;
+    --neon-red: #ff3838;
+    --neon-purple: #bd00ff;
+    --neon-amber: #ffb700;
+    --text-white: #f8fafc;
     --text-dim: #64748b;
 }
 
@@ -14,171 +15,182 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Vazirmatn', monospace;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 body {
     background-color: var(--grid-bg);
     color: var(--text-white);
     min-height: 100vh;
-    padding: 20px;
+    padding: 30px 20px;
     overflow-x: hidden;
     position: relative;
 }
 
-/* افکت مانیتورهای هکری و نظامی قدیمی (CRT Scanlines) */
+/* CRT Scanline Retro Effect */
 .crt-scanlines {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
     background-size: 100% 4px, 6px 100%;
     z-index: 999;
     pointer-events: none;
 }
 
-/* ساختار پیشرفته گرید داشبورد */
+/* Dashboard Grid Architecture */
 .cyber-grid-container {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 340px 1fr;
     grid-template-rows: auto auto;
-    gap: 20px;
-    max-width: 1400px;
+    gap: 25px;
+    max-width: 1440px;
     margin: 0 auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .cyber-grid-container {
         grid-template-columns: 1fr;
     }
 }
 
-/* استایل ماژولار پنل‌ها */
+/* Modular Panels */
 .panel {
     background: var(--panel-bg);
     border: 1px solid var(--border-color);
-    box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.03);
+    box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.02);
     position: relative;
 }
 
 .panel-header {
-    background: rgba(23, 42, 69, 0.5);
-    padding: 8px 15px;
+    background: rgba(27, 47, 74, 0.3);
+    padding: 10px 15px;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 1px;
 }
 
 .panel-title {
     color: var(--neon-cyan);
-    font-weight: bold;
 }
 
-.panel-status {
+.panel-status-tag {
     color: var(--neon-green);
-    font-size: 10px;
+    font-size: 9px;
     border: 1px solid var(--neon-green);
-    padding: 2px 6px;
-    border-radius: 3px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
 }
 
-/* پنل هویت (Aside) */
+/* Left Panel - Identity Card */
 .identity-panel {
-    padding-bottom: 25px;
+    padding-bottom: 30px;
     text-align: center;
 }
 
 .avatar-wrapper {
     position: relative;
-    width: 130px;
-    height: 130px;
-    margin: 30px auto 20px;
+    width: 140px;
+    height: 140px;
+    margin: 35px auto 20px;
 }
 
 .cyber-avatar {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 1px solid var(--neon-cyan);
-    padding: 5px;
-    background: #020408;
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    background: #010204;
+}
+
+.avatar-wrapper:hover .cyber-avatar {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
 
 .radar-ping {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     border: 1px solid var(--neon-cyan);
-    animation: ping 2s infinite linear;
+    animation: ping 2.5s infinite linear;
     pointer-events: none;
 }
 
 @keyframes ping {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.3); opacity: 0; }
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.25); opacity: 0; }
 }
 
 .main-title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 3px;
     color: #fff;
-    letter-spacing: 2px;
 }
 
 .role-title {
     color: var(--neon-cyan);
-    font-size: 14px;
-    margin-top: 5px;
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 700;
 }
 
 .role-subtitle {
     color: var(--text-dim);
-    font-size: 12px;
+    font-size: 11px;
+    margin-top: 2px;
 }
 
 .system-specs {
-    margin: 25px 15px;
+    margin: 30px 20px;
     padding: 15px;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4);
     border-left: 2px solid var(--neon-cyan);
-    text-align: right;
-    font-size: 13px;
+    text-align: left;
+    font-size: 12px;
 }
 
 .spec-line {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .spec-line span:first-child { color: var(--text-dim); }
-.text-green { color: var(--neon-green); }
+.text-cyan { color: var(--neon-cyan); }
+.text-amber { color: var(--neon-amber); text-shadow: 0 0 5px var(--neon-amber); }
 
 .social-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 0 15px;
+    gap: 12px;
+    padding: 0 20px;
 }
 
 .cyber-link-btn {
-    border: 1px solid var(--neon-cyan);
-    color: var(--neon-cyan);
+    border: 1px solid var(--border-color);
+    color: #fff;
     background: transparent;
-    padding: 10px 0;
+    padding: 12px 0;
     text-decoration: none;
-    font-size: 12px;
-    font-weight: bold;
-    transition: all 0.2s;
+    font-size: 11px;
+    font-weight: 700;
+    transition: all 0.2s ease;
 }
 
 .cyber-link-btn:hover {
-    background: var(--neon-cyan);
-    color: #000;
-    box-shadow: 0 0 10px var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    background: rgba(0, 240, 255, 0.05);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
 }
 
-/* پنل ماتریکس مهارت‌ها */
+/* Center Panel - Main Skills Matrix */
 .matrix-panel {
     padding: 25px;
 }
@@ -189,35 +201,41 @@ body {
     gap: 20px;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .skills-cluster { grid-template-columns: 1fr; }
 }
 
 .cluster-box {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--border-color);
-    padding: 20px;
-    position: relative;
+    padding: 22px;
+    transition: all 0.2s ease;
+}
+
+.cluster-box:hover {
+    background: rgba(27, 47, 74, 0.1);
 }
 
 .cluster-box h3 {
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 12px;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
 }
 
 .cluster-box ul { list-style: none; }
 .cluster-box li {
-    font-size: 13px;
+    font-size: 12.5px;
     color: #cbd5e1;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
 }
 
-.bullet { font-size: 10px; }
+.bullet { font-size: 9px; margin-top: 2px; }
 
-/* رنگ‌بندی داینامیک مرزهای تخصص */
+/* Dynamic Tactical Color Coding */
 .border-red h3 { color: var(--neon-red); }
 .border-red { border-top: 3px solid var(--neon-red); }
 .border-red .bullet { color: var(--neon-red); }
@@ -234,7 +252,7 @@ body {
 .border-purple { border-top: 3px solid var(--neon-purple); }
 .border-purple .bullet { color: var(--neon-purple); }
 
-/* بخش پایینی: مخازن توسعه یافته */
+/* Bottom Panel - Repositories */
 .repositories-panel {
     grid-column: 1 / -1;
     padding: 25px;
@@ -242,52 +260,54 @@ body {
 
 .dock-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 20px;
 }
 
 .dock-node {
-    background: rgba(2, 4, 8, 0.6);
+    background: rgba(1, 2, 4, 0.7);
     border: 1px solid var(--border-color);
-    padding: 20px;
+    padding: 22px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dock-node:hover {
     border-color: var(--neon-cyan);
-    transform: scale(1.02);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 240, 255, 0.1);
 }
 
 .node-tag {
     display: inline-block;
-    font-size: 10px;
-    background: rgba(0, 240, 255, 0.1);
+    font-size: 9px;
+    background: rgba(0, 240, 255, 0.08);
     color: var(--neon-cyan);
-    padding: 2px 6px;
-    margin-bottom: 12px;
+    padding: 2px 7px;
+    margin-bottom: 14px;
     font-weight: bold;
+    border: 1px solid rgba(0, 240, 255, 0.2);
 }
 
 .dock-node h4 {
-    font-size: 15px;
+    font-size: 14px;
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .dock-node p {
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--text-dim);
     line-height: 1.6;
 }
 
-/* تیکر متحرک پایین صفحه */
+/* Horizontal Ticker Footer */
 .live-ticker {
     position: fixed;
     bottom: 0; left: 0; width: 100%;
-    background: #020408;
+    background: #010204;
     border-top: 1px solid var(--border-color);
-    padding: 5px 0;
+    padding: 6px 0;
     z-index: 100;
     overflow: hidden;
 }
@@ -295,14 +315,14 @@ body {
 .ticker-content {
     display: inline-block;
     white-space: nowrap;
-    padding-right: 100%;
-    font-size: 11px;
+    padding-left: 100%;
+    font-size: 10px;
     color: var(--text-dim);
     font-family: monospace;
-    animation: ticker 25s linear infinite;
+    animation: ticker 30s linear infinite;
 }
 
 @keyframes ticker {
-    0% { transform: translate3d(100%, 0, 0); }
+    0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-100%, 0, 0); }
 }

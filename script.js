@@ -1,40 +1,62 @@
-// ایجاد سیستم تعاملی صوتی کمکی (صداهای بیپ دیجیتال بسیار ضعیف در هنگام کلیک روی ماژول‌ها)
-// این قابلیت حس سخت‌افزاری بودن کامپیوتر را به کاربر القا می‌کند.
+/**
+ * TACTICAL CYBER INFRASTRUCTURE OS // SYSTEM ENGINE
+ */
 
-function playSystemBeep(frequency = 600, duration = 0.04) {
+// Live Digital System Clock
+function updateSystemClock() {
+    const clockElement = document.getElementById('liveClock');
+    if (!clockElement) return;
+    
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+}
+setInterval(updateSystemClock, 1000);
+
+// Audio Synthesis Engine (Tactical Interface Feedback)
+function triggerUIBeep(frequency = 550, duration = 0.03) {
     try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        
+        const audioCtx = new AudioContextClass();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         
         oscillator.type = 'sine';
         oscillator.frequency.value = frequency;
         
-        gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime); // صدا فوق‌العاده آرام تنظیم شده تا آزاردهنده نباشد
+        // Low volume setting (0.008) to remain elegant and unobtrusive
+        gainNode.gain.setValueAtTime(0.008, audioCtx.currentTime);
         
         oscillator.connect(gainNode);
         gainNode.connect(audioCtx.destination);
         
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + duration);
-    } catch (e) {
-        // ممانعت مروگرها از پخش صدا پیش از تعامل اول برطرف شد
+    } catch (err) {
+        // Suppress browser audio-autostart restriction warnings safely
     }
 }
 
-// گوش دادن به کلیک روی تمام گره‌های مخازن
+// Attach Interactive Sounds to Telemetry Node Grid
 document.addEventListener('DOMContentLoaded', () => {
-    const nodes = document.querySelectorAll('.dock-node, .cyber-link-btn, .cluster-box');
+    updateSystemClock(); // Initialize clock instantly
     
-    nodes.forEach(node => {
-        node.addEventListener('mouseenter', () => {
-            playSystemBeep(800, 0.02); // صدای کلیک ملایم زمان هاور
+    const interactiveElements = document.querySelectorAll('.dock-node, .cyber-link-btn, .cluster-box');
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            triggerUIBeep(750, 0.015); // Short tactical chirp on hover
         });
         
-        node.addEventListener('click', () => {
-            playSystemBeep(450, 0.08); // بیپ تایید زمان کلیک
+        element.addEventListener('click', () => {
+            triggerUIBeep(400, 0.06); // Deeper confirmation tone on click
         });
     });
 });
 
-console.log("CORE SYSTEM DASHBOARD V3.0 DEPLOYED SUCCESSFULLY.");
+console.log("TACTICAL CORE DASHBOARD ENGINE ONLINE.");
