@@ -43,7 +43,6 @@ window.addEventListener('resize', () => {
 });
 
 // شبیه‌ساز لاگ‌های امنیتی ترمینال در ابتدای ورود
-const terminalText = document.getElementById('terminalText');
 const logs = [
     "INITIALIZING SECURITY PROTOCOLS...",
     "CONNECTING TO SCARY TECHNOLOGIES SECURE NODE...",
@@ -56,26 +55,37 @@ let logIndex = 0;
 let charIndex = 0;
 
 function typeLog() {
+    const terminalText = document.getElementById('terminalText');
+    if (!terminalText) return; // لایه‌محافظ برای جلوگیری از خطا در صورت عدم لود المان
+
     if (logIndex < logs.length) {
         if (charIndex < logs[logIndex].length) {
             terminalText.innerHTML += logs[logIndex].charAt(charIndex);
             charIndex++;
-            setTimeout(typeLog, 25);
+            setTimeout(typeLog, 15); // افزایش سرعت تایپ برای تجربه کاربری بهتر
         } else {
-            terminalText.innerHTML += "\n";
+            terminalText.innerHTML += "<br>"; // اصلاح ساختار شکست خط در اچ‌تی‌ام‌ایل
             logIndex++;
             charIndex = 0;
-            setTimeout(typeLog, 500);
+            setTimeout(typeLog, 200);
         }
     } else {
-        // مخفی کردن لایه ترمینال پس از اتمام شبیه‌سازی بوت
+        // حذف قطعی لایه ترمینال پس از اتمام شبیه‌سازی بوت
         setTimeout(() => {
             const overlay = document.getElementById('terminalOverlay');
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.style.display = 'none', 500);
-        }, 1000);
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500);
+            }
+        }, 800);
     }
 }
 
-// شروع فرآیند تایپ به محض لود شدن صفحه
-document.addEventListener("DOMContentLoaded", typeLog);
+// اجرای حتمی پس از لود کامل کل ساختار صفحه
+if (document.readyState === "complete" || document.readyState === "interactive") {
+    setTimeout(typeLog, 100);
+} else {
+    document.addEventListener("DOMContentLoaded", typeLog);
+}
