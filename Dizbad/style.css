@@ -32,7 +32,7 @@ nav ul li a:hover { color: var(--accent); }
 /* هیرو سکشن */
 .hero {
     position: relative; height: 100vh;
-    background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3') center/cover no-repeat;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/North_Dizbad_-_Nishapur_2.jpg/960px-North_Dizbad_-_Nishapur_2.jpg') center/cover no-repeat;
     display: flex; align-items: center; justify-content: center; text-align: center; color: white;
 }
 .hero-overlay {
