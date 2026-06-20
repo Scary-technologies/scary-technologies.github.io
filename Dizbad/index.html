@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پورتال جامع اکوتوریسم دیزباد بالا</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">DIZBAD<span>.</span></div>
+        <nav>
+            <ul>
+                <li><a href="#about">کشف دیزباد</a></li>
+                <li><a href="#gallery">گالری مصور</a></li>
+                <li><a href="#accommodation">برنامه‌ریزی اقامت</a></li>
+                <li><a href="#map-section">نقشه هوایی</a></li>
+                <li><a href="#rules-section">کدهای اخلاقی</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge">مرتفع‌ترین روستای باسوادی ایران</span>
+            <h1>سفر به واحه عمودی <span>دیزباد بالا</span></h1>
+            <p>جایی که سقف هر خانه حیاط دیگریست؛ مهد فرهنگ، بازیافت و طبیعت بکر بینالود.</p>
+            <a href="#accommodation" class="btn-glow">شروع برنامه‌ریزی سفر</a>
+        </div>
+    </section>
+
+    <section class="weather-widget-bar">
+        <div class="widget-item">☀️ وضعیت فعلی: <span id="weather-status">آفتابی و خنک (ییلاقی)</span></div>
+        <div class="widget-item">🌉 وضعیت جاده آسفالت: <span id="road-status" class="status-good">باز و روان (لطفا با احتیاط برانید)</span></div>
+        <div class="widget-item">🦅 شاخص زیست‌محیطی: <span class="status-good">عالی (منطقه حفاظت‌شده)</span></div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 class="section-title">درباره دیزباد بالا</h2>
+                <p>روستای دیزباد بالا واقع در دامنه‌های جنوبی رشته‌کوه بینالود، با نرخ باسوادی ۱۰۰ درصدی از سال ۱۳۵۱، یکی از پیشرفته‌ترین بافت‌های فرهنگی روستایی ایران را دارد. مردم این منطقه به شدت روی حفظ حیات وحش، عدم شکار و تفکیک زباله حساس هستند.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card"><h3>٪۱۰۰</h3><p>باسوادی یونسکو</p></div>
+                <div class="stat-card"><h3>۲,۰۲۰m</h3><p>ارتفاع از سطح دریا</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="container bg-dark">
+        <h2 class="section-title center">گالری تصاویر دیزباد</h2>
+        <p class="section-desc">روی تصاویر کلیک کنید تا نمای بزرگتر و توضیحات هر بخش را ببینید.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3');" onclick="openLightbox('بافت پلکانی سنگی', 'معماری خاص روستا که سنگ‌فرش‌ها و سقف‌ها در هم تنیده شده‌اند.')"><span>بافت پلکانی</span></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3');" onclick="openLightbox('ارتفاعات بینالود و قجغر', 'مسیر رویایی کوهنوردی با چشمه‌های پرآب ییلاقی.')"><span>ارتفاعات بینالود</span></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3');" onclick="openLightbox('باغات گیلاس و آلبالو', 'منبع اصلی درآمد پایدار اهالی که در بهار اقیانوسی از شکوفه می‌شود.')"><span>کوچه‌باغ‌های میوه</span></div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-desc"></p>
+            <button class="btn-close" onclick="closeLightbox()">بستن</button>
+        </div>
+    </div>
+
+    <section id="accommodation" class="container">
+        <h2 class="section-title center">برنامه‌ریزی هوشمند مکان اقامت</h2>
+        <p class="section-desc">با استفاده از فیلترهای زیر، دقیقاً مکان مورد نظر خود را بر اساس دسترسی و بودجه پیدا کنید:</p>
+        
+        <div class="filter-dashboard">
+            <div class="filter-group">
+                <label>نوع ترجیحی اسکان:</label>
+                <select id="filter-type" onchange="runAdvancedFilter()">
+                    <option value="all">🌐 همه گزینه‌ها</option>
+                    <option value="stay">🏡 بوم‌گردی و خانه‌های روستایی</option>
+                    <option value="camp">⛺ چادر و کمپینگ در ییلاقات</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>نوع دسترسی جاده‌ای:</label>
+                <select id="filter-access" onchange="runAdvancedFilter()">
+                    <option value="all">🚗 فرقی نمی‌کند</option>
+                    <option value="car">ماشین‌رو (آسفالت/خاکی سبک)</option>
+                    <option value="walk">فقط پیاده‌روی و کوهپیمایی</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="filter-results" class="grid">
+            </div>
+    </section>
+
+    <section class="container bg-dark">
+        <h2 class="section-title center">محاسبه‌گر هزینه و شبیه‌ساز پسماند سفر</h2>
+        <div class="calc-box-layout">
+            <div class="calc-inputs">
+                <div class="form-group-custom">
+                    <label>تعداد همسفران:</label>
+                    <input type="number" id="eco-people" value="2" min="1" oninput="calculateEcoTrip()">
+                </div>
+                <div class="form-group-custom">
+                    <label>مدت اقامت (شب):</label>
+                    <input type="number" id="eco-days" value="1" min="1" oninput="calculateEcoTrip()">
+                </div>
+            </div>
+            <div class="calc-outputs-glass">
+                <h3>💰 برآورد کلی سفر شما:</h3>
+                <p>تخمین هزینه پایه اسکان: <span id="eco-cost">۰</span> تومان</p>
+                <p>تولید پسماند تقریبی گروه شما: <span id="eco-waste" style="color: #ff6b6b;">۰</span> کیلوگرم</p>
+                <p id="eco-tip" style="color: var(--accent); font-size: 0.95rem; margin-top: 10px; line-height: 1.6;"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="map-section" class="container">
+        <h2 class="section-title center">نقشه هوایی زنده ماهواره‌ای دیزباد</h2>
+        <p class="section-desc">موقعیت دقیق تمام نقاط فیلتر شده بالا روی عکس هوایی و ماهواره‌ای منطقه ست شده است.</p>
+        <div id="map"></div>
+    </section>
+
+    <section id="rules-section" class="container bg-dark">
+        <h2 class="section-title center">📜 کدهای اخلاقی و منشور زیست‌محیطی دیزباد</h2>
+        <p class="section-desc">شورای محلی دیزباد قوانین سختی برای حفظ این بهشت دارد. لطفاً قبل از ورود متعهد به رعایت آن‌ها باشید:</p>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h4>🚫 شکار و آسیب به حیوانات ممنوع</h4>
+                <p>دیزباد یک منطقه حفاظت‌شده مردمی است. پرندگان و کبوترهای وحشی دامنه‌ها بخشی از هویت روستا هستند.</p>
+            </div>
+            <div class="rule-card">
+                <h4>🌳 عدم قطع درختان و پوشش گیاهی</h4>
+                <p>بسیاری از درختان کهنسال دره دارای شناسنامه هستند. روشن کردن آتش در مجاورت تنه درختان جریمه محلی دارد.</p>
+            </div>
+            <div class="rule-card">
+                <h4>🗑️ تفکیک کامل زباله از مبدا</h4>
+                <p>روستا مجهز به سیستم بازیافت پیشرفته است. زباله‌های تر و خشک خود را به هیچ وجه مخلوط و رها نکنید.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>طراحی شده برای معرفی فرهنگ و طبیعت زیبای دیزباد بالا | ۱۴۰۵</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

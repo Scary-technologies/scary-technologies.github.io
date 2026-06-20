@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
+
+:root {
+    --primary: #1b4332;
+    --accent: #d4af37;
+    --dark: #0b1912;
+    --light: #f4f7f5;
+    --glass: rgba(255, 255, 255, 0.04);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Vazirmatn', sans-serif; scroll-behavior: smooth;
+}
+
+body { background-color: var(--light); color: #333; overflow-x: hidden; }
+
+/* هدر شیشه‌ای مچ با بک‌گراند */
+header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 8%; position: fixed; width: 100%; top: 0; z-index: 1000;
+    background: rgba(11, 25, 18, 0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+header .logo { color: white; font-size: 1.8rem; font-weight: 900; }
+header .logo span { color: var(--accent); }
+nav ul { display: flex; list-style: none; }
+nav ul li { margin-right: 25px; }
+nav ul li a { color: #e0e0e0; text-decoration: none; font-weight: 700; transition: 0.3s; }
+nav ul li a:hover { color: var(--accent); }
+
+/* هیرو سکشن */
+.hero {
+    position: relative; height: 100vh;
+    background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3') center/cover no-repeat;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+}
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(11,25,18,0.6), var(--dark));
+}
+.hero-content { position: relative; z-index: 10; max-width: 800px; padding: 20px; }
+.badge { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 50px; font-weight: bold; }
+.hero-content h1 { font-size: 3.5rem; font-weight: 900; margin: 20px 0; }
+.hero-content h1 span { color: var(--accent); }
+.hero-content p { font-size: 1.2rem; color: #ccc; margin-bottom: 40px; }
+.btn-glow { background: var(--accent); color: var(--dark); padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: 900; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); transition: 0.4s; }
+.btn-glow:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(212, 175, 55, 0.7); }
+
+/* نوار وضعیت آب‌و‌هوا */
+.weather-widget-bar {
+    background: var(--primary); color: white; display: flex; justify-content: space-around;
+    padding: 15px 5%; font-weight: bold; font-size: 0.95rem; border-bottom: 3px solid var(--accent);
+}
+.status-good { color: #52b788; }
+
+/* بخش‌ها */
+.container { padding: 90px 8%; }
+.bg-dark { background-color: var(--dark); color: white; }
+.section-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 15px; }
+.section-title.center { text-align: center; }
+.section-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--accent); margin-top: 10px; }
+.section-title.center::after { margin: 10px auto 0; }
+.section-desc { text-align: center; color: #888; margin-bottom: 40px; }
+
+/* آمار */
+.about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: center; }
+.about-text p { font-size: 1.15rem; line-height: 1.9; color: #555; }
+.about-stats { display: flex; gap: 20px; }
+.stat-card { background: white; padding: 25px; border-radius: 15px; text-align: center; flex: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-bottom: 4px solid var(--accent); }
+.stat-card h3 { font-size: 2.2rem; color: var(--primary); }
+
+/* گالری تصاویر لایت‌باکس */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.gallery-item {
+    height: 250px; border-radius: 15px; background-size: cover; background-position: center;
+    position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 20px; transition: 0.4s; cursor: pointer;
+}
+.gallery-item::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(transparent, rgba(0,0,0,0.8)); }
+.gallery-item span { position: relative; color: white; font-weight: bold; font-size: 1.1rem; }
+.gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212,175,55,0.2); }
+
+/* پاپ‌آپ لایت‌باکس */
+.lightbox {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+    z-index: 2000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px);
+}
+.lightbox-content { background: var(--dark); color: white; padding: 40px; border-radius: 20px; max-width: 500px; text-align: center; border: 1px solid var(--accent); }
+.lightbox-content h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.5rem; }
+.lightbox-content p { line-height: 1.8; opacity: 0.9; margin-bottom: 25px; }
+.btn-close { background: white; border: none; padding: 8px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+
+/* داشبورد فیلتر پیشرفته */
+.filter-dashboard { background: #eef2ef; padding: 25px; border-radius: 15px; display: flex; gap: 30px; margin-bottom: 40px; justify-content: center; }
+.filter-group { display: flex; flex-direction: column; gap: 8px; width: 250px; }
+.filter-group label { font-weight: bold; font-size: 0.95rem; }
+.filter-group select { padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
+
+/* کارت‌های نتایج */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.result-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border-top: 4px solid var(--primary); transition: 0.3s; }
+.result-card:hover { transform: translateY(-5px); border-top-color: var(--accent); }
+.result-card h3 { margin-bottom: 10px; color: var(--primary); }
+.card-meta { display: inline-block; background: #eef2ef; padding: 3px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; }
+
+/* ساختار بخش محاسبات زیست‌محیطی */
+.calc-box-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+.calc-inputs { background: rgba(255,255,255,0.03); padding: 35px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+.form-group-custom { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.form-group-custom input { padding: 12px; border-radius: 10px; border: none; background: white; font-size: 1rem; font-weight: bold; text-align: center; }
+.calc-outputs-glass { background: var(--glass); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); padding: 35px; border-radius: 20px; border-right: 5px solid var(--accent); }
+.calc-outputs-glass p { font-size: 1.2rem; margin-bottom: 15px; }
+.calc-outputs-glass span { font-weight: 900; }
+
+/* نقشه */
+#map { height: 500px; width: 100%; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+
+/* کدهای اخلاقی */
+.rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+.rule-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; }
+.rule-card h4 { color: var(--accent); margin-bottom: 12px; font-size: 1.15rem; }
+.rule-card p { font-size: 0.95rem; line-height: 1.7; color: #ccc; }
+
+footer { background: #060d0a; color: #666; text-align: center; padding: 25px; font-size: 0.9rem; }
+
+@media (max-width: 768px) {
+    header { flex-direction: column; gap: 10px; padding: 15px; }
+    .hero-content h1 { font-size: 2.2rem; }
+    .about-grid, .calc-box-layout, .filter-dashboard { grid-template-columns: 1fr; flex-direction: column; gap: 15px; }
+    .filter-group { width: 100%; }
+}
