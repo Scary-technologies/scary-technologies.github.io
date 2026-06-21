@@ -3,179 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ali Mirshahi (PR-M) | Portfolio</title>
+    <title>PR-M | The Ultimate Engineer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="bg-effects"></div>
+    <div class="cursor-dot" data-cursor></div>
+    <div class="cursor-outline" data-cursor></div>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">PR-M<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Repositories</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <canvas id="network-canvas"></canvas>
 
-    <header class="hero">
-        <div class="hero-content">
-            <div class="glitch-wrapper">
-                <h1 class="glitch" data-text="Ali Mirshahi">Ali Mirshahi</h1>
-            </div>
-            <div class="terminal-text">
-                <span class="prompt">></span> <span id="typing-effect"></span>
-            </div>
-            <p class="hero-description">
-                Senior Computer Engineer specializing in advanced network infrastructures, cybersecurity automation, and robust backend development with Python.
-            </p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Let's Connect</a>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
-
-        <section id="skills" class="reveal">
-            <h2 class="section-title">Core Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="card-icon"><i class="fas fa-network-wired"></i></div>
-                    <h3>Network & SysAdmin</h3>
-                    <ul>
-                        <li>Mikrotik, WAN/MAN/LAN</li>
-                        <li>Network Security & Firewalls</li>
-                        <li>VPS Management & Linux (Ubuntu)</li>
-                        <li>Radio Wireless Programming</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="card-icon"><i class="fab fa-python"></i></div>
-                    <h3>Development & Automation</h3>
-                    <ul>
-                        <li>Python Backend & Scripting</li>
-                        <li>Web Hosting & Cloudflare API</li>
-                        <li>Telegram Bots & Automation Tools</li>
-                        <li>MySQL / NoSQL Database Design</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Hardware & Tools</h3>
-                    <ul>
-                        <li>Hardware Architecture & Maintenance</li>
-                        <li>CCTV Integration & Mobile Repairs</li>
-                        <li>Docker, VirtualBox & XAMPP</li>
-                        <li>Bash Scripting & Git Workflow</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="reveal">
-            <h2 class="section-title">Featured Repositories</h2>
-            
-            <div class="repo-category">
-                <div class="category-header"><i class="fas fa-shield-alt"></i> System & Network Tools</div>
-                <div class="repo-grid">
-                    <div class="repo-card">
-                        <h3><a href="https://github.com/Scary-technologies/SMS-Baron" target="_blank">SMS-Baron</a></h3>
-                        <p class="repo-desc">SMS automation and load testing suite built fully with Python framework.</p>
-                        <div class="repo-tags">
-                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
-                            <span class="tag-status">Active</span>
-                        </div>
+    <main class="wrapper">
+        <header class="hero">
+            <div class="hero-content text-glow">
+                <p class="sys-status"><span></span> SYSTEM ONLINE</p>
+                <h1 class="glitch-title" data-text="PR-M">PR-M</h1>
+                <h2 class="hero-role">Senior Computer Engineer & Network Alchemist</h2>
+                <div class="terminal-box">
+                    <div class="terminal-header">
+                        <span class="btn-close"></span>
+                        <span class="btn-min"></span>
+                        <span class="btn-max"></span>
                     </div>
-                    <div class="repo-card">
-                        <h3><a href="https://github.com/Scary-technologies/Server-Checker-Script" target="_blank">Server-Checker-Script</a></h3>
-                        <p class="repo-desc">Multi-threaded HTTP status verifier with ThreadPoolExecutor for network management.</p>
-                        <div class="repo-tags">
-                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
-                        </div>
-                    </div>
-                    <div class="repo-card">
-                        <h3><a href="https://github.com/Scary-technologies/Port-Scanner" target="_blank">Port-Scanner</a></h3>
-                        <p class="repo-desc">تست امنیت و اسکن پورت‌ها جهت شناسایی آسیب‌پذیری‌های فعال شبکه.</p>
-                        <div class="repo-tags">
-                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
-                            <span class="tag-license">MIT</span>
-                        </div>
-                    </div>
-                    <div class="repo-card">
-                        <h3><a href="https://github.com/Scary-technologies/Cloudflare-Zone-Manager" target="_blank">Cloudflare-Zone-Manager</a></h3>
-                        <p class="repo-desc">ابزار اتوماسیون مدیریت DNS و زون‌های کلودفلر بر بستر API پایتون.</p>
-                        <div class="repo-tags">
-                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
-                        </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">root@pr-m:~#</span> ./execute_skills.sh</p>
+                        <p class="typewriter" id="typewriter-text"></p>
                     </div>
                 </div>
             </div>
+        </header>
 
-            <div class="repo-category">
-                <div class="category-header"><i class="fab fa-wordpress"></i> WooCommerce & WordPress Solutions</div>
-                <div class="repo-grid">
-                    <div class="repo-card">
-                        <h3><a href="https://github.com/Scary-technologies/WooCommerce-Bulk-Product-Update-Tool" target="_blank">WooCommerce-Bulk-Update</a></h3>
-                        <p class="repo-desc">Python GUI tool for bulk operations via WooCommerce REST API using Tkinter interface.</p>
-                        <div class="repo-tags">
-                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
-                        </div>
+        <section class="section">
+            <h2 class="section-heading">SYSTEM & NETWORK TOOLS</h2>
+            <div class="grid-3d">
+                
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fab fa-python card-icon"></i>
+                        <h3>SMS-Baron</h3>
+                        <p>Sms Boomer 4 Fun - SMS automation tool built with Python.</p>
+                        <a href="https://github.com/Scary-technologies/SMS-Baron" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <div class="repo-card">
-                        <h3><a href="https://github.com/Scary-technologies/WebP-Optimizer-Pro" target="_blank">WebP-Optimizer-Pro</a></h3>
-                        <p class="repo-desc">افزونه پیشرفته وردپرس جهت فشرده‌سازی و تبدیل خودکار تصاویر به فرمت نسل جدید WebP.</p>
-                        <div class="repo-tags">
-                            <span class="tag-tech"><i class="fab fa-php"></i> PHP</span>
-                            <span class="tag-archived">Archived</span>
-                        </div>
-                    </div>
+                    <div class="glare"></div>
                 </div>
-            </div>
 
-            <div class="repo-category">
-                <div class="category-header"><i class="fas fa-bolt"></i> Productivity & Media Tools</div>
-                <div class="repo-grid">
-                    <div class="repo-card">
-                        <h3><a href="https://github.com/Scary-technologies/SokhanNegar" target="_blank">SokhanNegar (PVTT)</a></h3>
-                        <p class="repo-desc">سیستم هوشمند تبدیل گفتار به متن فارسی با استفاده از SpeechRecognition و PyQt5.</p>
-                        <div class="repo-tags">
-                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
-                        </div>
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fab fa-python card-icon"></i>
+                        <h3>Server-Checker-Script</h3>
+                        <p>بررسی وضعیت سرورهای لیست شده با استفاده از requests و ThreadPoolExecutor.</p>
+                        <a href="https://github.com/Scary-technologies/Server-Checker-Script" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-cogs card-icon"></i>
+                        <h3>System-Management-Tool</h3>
+                        <p>ابزاری جامع و قدرتمند با پایتون برای مدیریت سیستم‌های مختلف.</p>
+                        <a href="https://github.com/Scary-technologies/system-management-tool" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-shield-alt card-icon"></i>
+                        <h3>Port-Scanner</h3>
+                        <p>ابزار امنیت سایبری برای بررسی پورت‌ها و تشخیص آسیب‌پذیری احتمالی.</p>
+                        <a href="https://github.com/Scary-technologies/Port-Scanner" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-network-wired card-icon"></i>
+                        <h3>Multi-threaded API Scanner</h3>
+                        <p>Advanced multi-threaded API scanner for security testing.</p>
+                        <a href="https://github.com/Scary-technologies/Advanced-Multi-threaded-API-Scanner" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-cloud card-icon"></i>
+                        <h3>Cloudflare-Zone-Manager</h3>
+                        <p>ابزار مدیریت DNS و Zone های کلودفلر با قابلیت اتوماسیون کامل.</p>
+                        <a href="https://github.com/Scary-technologies/Cloudflare-Zone-Manager" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fab fa-windows card-icon"></i>
+                        <h3>Windows-User-Manager</h3>
+                        <p>Windows user management tool heavily automated via Python.</p>
+                        <a href="https://github.com/Scary-technologies/Microsoft-Windows-User-Manager" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-link card-icon"></i>
+                        <h3>Link-Checker-Tool</h3>
+                        <p>ابزار گرافیکی پایتون برای بررسی لینک‌های خراب (خطای 404) از فایل.</p>
+                        <a href="https://github.com/Scary-technologies/Link-Checker-Tool" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="reveal">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-wrapper">
-                <p>Ready to build robust infrastructures or automate operations? Drop a line.</p>
-                <div class="social-grid">
-                    <a href="https://github.com/Scary-technologies" target="_blank" class="social-btn">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/ali-mirshahi-507948248" target="_blank" class="social-btn">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="mailto:ali.mirshahi@example.com" class="social-btn">
-                        <i class="fas fa-envelope"></i> Email
-                    </a>
+        <section class="section">
+            <h2 class="section-heading">WOOCOMMERCE & WORDPRESS</h2>
+            <div class="grid-3d">
+                
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-store card-icon"></i>
+                        <h3>WooCommerce Bulk Update</h3>
+                        <p>Python GUI tool via Tkinter for bulk updating products using REST API.</p>
+                        <a href="https://github.com/Scary-technologies/WooCommerce-Bulk-Product-Update-Tool" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
                 </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-print card-icon"></i>
+                        <h3>WooCommerce-Print-Orders</h3>
+                        <p>افزونه پیشرفته برای چاپ فاکتورهای ووکامرس با پشتیبانی از زبان‌های RTL.</p>
+                        <a href="https://github.com/Scary-technologies/WooCommerce-Print-Orders" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-comments card-icon"></i>
+                        <h3>Random Reviews Generator</h3>
+                        <p>اسکریپت پایتون جهت ایجاد نظرات تصادفی ووکامرس از روی دیتابیس متنی.</p>
+                        <a href="https://github.com/Scary-technologies/WooCommerce-Random-Reviews-Generator" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fab fa-php card-icon"></i>
+                        <h3>WebP-Optimizer-Pro</h3>
+                        <p>تبدیل خودکار و دسته‌جمعی تصاویر آپلودی در وردپرس به فرمت WebP.</p>
+                        <a href="https://github.com/Scary-technologies/WebP-Optimizer-Pro" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fab fa-wordpress card-icon"></i>
+                        <h3>WP-Import-Random-Comments</h3>
+                        <p>پلاگین وردپرس برای درون‌ریزی نظرات تصادفی به پست‌ها.</p>
+                        <a href="https://github.com/Scary-technologies/Wp-Import-Random-Comments" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-users card-icon"></i>
+                        <h3>WP User Manager SQL GUI</h3>
+                        <p>سیستم مدیریت کاربران وردپرس از طریق بانک اطلاعاتی با رابط گرافیکی.</p>
+                        <a href="https://github.com/Scary-technologies/WordPress_User_Manager_SQL_With_GUI" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
             </div>
         </section>
 
+        <section class="section">
+            <h2 class="section-heading">IMAGE & MEDIA TOOLS</h2>
+            <div class="grid-3d">
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-database card-icon"></i>
+                        <h3>Product-Data-Extractor</h3>
+                        <p>استخراج اطلاعات محصولات از سایت‌های تجارت الکترونیک و خروجی اکسل.</p>
+                        <a href="https://github.com/Scary-technologies/Product-Data-Extractor" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-crop-alt card-icon"></i>
+                        <h3>Advanced-Image-Resizer</h3>
+                        <p>ابزار پیشرفته برش و تغییر اندازه تصاویر (Multi-threaded) برای ووکامرس.</p>
+                        <a href="https://github.com/Scary-technologies/Advanced-Image-Resizer-WooCommerce-Thumbnail-Creator" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-images card-icon"></i>
+                        <h3>IMG2WEBP</h3>
+                        <p>وب‌اپلیکیشن Streamlit برای تبدیل تصاویر JPG/PNG به فرمت WebP.</p>
+                        <a href="https://github.com/Scary-technologies/IMG2WEBP" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-heading">PRODUCTIVITY TOOLS</h2>
+            <div class="grid-3d">
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-microphone-alt card-icon"></i>
+                        <h3>SokhanNegar (PVTT)</h3>
+                        <p>ابزار تبدیل صدا به متن فارسی با استفاده از پایتون، PyQt5 و SpeechRecognition.</p>
+                        <a href="https://github.com/Scary-technologies/SokhanNegar" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-keyboard card-icon"></i>
+                        <h3>Keyboard-Macro-Tool</h3>
+                        <p>اجرای خودکار دستورات سیستم از روی فایل اکسل با فشردن کلیدهای میانبر.</p>
+                        <a href="https://github.com/Scary-technologies/Keyboard-Macro-Tool" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+                <div class="card-3d tilt-element">
+                    <div class="card-content">
+                        <i class="fas fa-language card-icon"></i>
+                        <h3>SRT Translate to Persian</h3>
+                        <p>رابط گرافیکی با Tkinter جهت ترجمه فایل‌های زیرنویس SRT با googletrans.</p>
+                        <a href="https://github.com/Scary-technologies/srt_translate_to_persian" target="_blank" class="card-btn">INITIALIZE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="glare"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="social-links">
+                <a href="https://github.com/Scary-technologies" target="_blank" class="hover-glow"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ali-mirshahi-507948248" target="_blank" class="hover-glow"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>ENCRYPTED CONNECTION ESTABLISHED &copy; 2026 PR-M</p>
+        </footer>
     </main>
-
-    <footer>
-        <p>&copy; 2026 Ali Mirshahi (PR-M). Engineered for performance.</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
