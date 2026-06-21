@@ -3,131 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PR-M // Tactical IT Infrastructure Dashboard</title>
+    <title>Ali Mirshahi (PR-M) | Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="crt-scanlines"></div>
+    <div class="bg-effects"></div>
 
-    <div class="cyber-grid-container">
-        
-        <aside class="panel identity-panel">
-            <div class="panel-header">
-                <span class="panel-title">SYS_ID // CORE_OPERATOR</span>
-                <span class="panel-status-tag">SECURE</span>
-            </div>
-            
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/22888085?v=4" alt="PR-M LOGO" class="cyber-avatar">
-                <div class="radar-ping"></div>
-            </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">PR-M<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Repositories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-            <h1 class="main-title">PR-M</h1>
-            <p class="role-title">Senior Computer Engineer</p>
-            <p class="role-subtitle">Network Specialist & Automation Architect</p>
-            
-            <div class="system-specs">
-                <div class="spec-line"><span>OPERATOR:</span> <span class="text-cyan">Unknown</span></div>
-                <div class="spec-line"><span>LOCATION:</span> <span>On The Earth</span></div>
-                <div class="spec-line"><span>EXPERIENCE:</span> <span>30+ YEARS</span></div>
-                <div class="spec-line"><span>CLOCK_SYS:</span> <span id="liveClock" class="text-amber">00:00:00</span></div>
+    <header class="hero">
+        <div class="hero-content">
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="Ali Mirshahi">Ali Mirshahi</h1>
             </div>
+            <div class="terminal-text">
+                <span class="prompt">></span> <span id="typing-effect"></span>
+            </div>
+            <p class="hero-description">
+                Senior Computer Engineer specializing in advanced network infrastructures, cybersecurity automation, and robust backend development with Python.
+            </p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+            </div>
+        </div>
+    </header>
 
-            <div class="social-grid">
-                <a href="https://github.com/Scary-technologies/" target="_blank" class="cyber-link-btn">GITHUB PROFILE</a>
-            </div>
-        </aside>
+    <main class="container">
 
-        <main class="panel matrix-panel">
-            <div class="panel-header">
-                <span class="panel-title">MODULE_01 // CORE_COMPETENCY_MATRIX</span>
-            </div>
-            
-            <div class="skills-cluster">
-                <div class="cluster-box border-red">
-                    <h3>[ INFRASTRUCTURE & NETWORK SECURITY ]</h3>
+        <section id="skills" class="reveal">
+            <h2 class="section-title">Core Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Network & SysAdmin</h3>
                     <ul>
-                        <li><span class="bullet">■</span> Mikrotik RouterOS & Radio Wireless Programming</li>
-                        <li><span class="bullet">■</span> WAN / MAN / LAN Advanced Configuration</li>
-                        <li><span class="bullet">■</span> Network Security, Hardening & Firewall Policies</li>
-                        <li><span class="bullet">■</span> Real-time Network Monitoring & Traffic Analysis</li>
+                        <li>Mikrotik, WAN/MAN/LAN</li>
+                        <li>Network Security & Firewalls</li>
+                        <li>VPS Management & Linux (Ubuntu)</li>
+                        <li>Radio Wireless Programming</li>
                     </ul>
                 </div>
-
-                <div class="cluster-box border-cyan">
-                    <h3>[ SYSTEM ADMINISTRATION & BACKEND ]</h3>
+                <div class="skill-card">
+                    <div class="card-icon"><i class="fab fa-python"></i></div>
+                    <h3>Development & Automation</h3>
                     <ul>
-                        <li><span class="bullet">■</span> Enterprise VPS Management & Server Config</li>
-                        <li><span class="bullet">■</span> Linux Environment Mastery (Ubuntu Server)</li>
-                        <li><span class="bullet">■</span> Relational & NoSQL Database Architecture</li>
-                        <li><span class="bullet">■</span> XAMPP, Local Stacks & VirtualBox Environments</li>
+                        <li>Python Backend & Scripting</li>
+                        <li>Web Hosting & Cloudflare API</li>
+                        <li>Telegram Bots & Automation Tools</li>
+                        <li>MySQL / NoSQL Database Design</li>
                     </ul>
                 </div>
-
-                <div class="cluster-box border-green">
-                    <h3>[ DEVELOPMENT, AUTOMATION & BOTS ]</h3>
+                <div class="skill-card">
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Hardware & Tools</h3>
                     <ul>
-                        <li><span class="bullet">■</span> Python Automation, Scripting & Multi-threading</li>
-                        <li><span class="bullet">■</span> Telegram Bot Ecosystems & Custom API Integrations</li>
-                        <li><span class="bullet">■</span> Bash Scripting & Task Scheduling Automations</li>
-                        <li><span class="bullet">■</span> Advanced Multi-threaded Network Tools</li>
+                        <li>Hardware Architecture & Maintenance</li>
+                        <li>CCTV Integration & Mobile Repairs</li>
+                        <li>Docker, VirtualBox & XAMPP</li>
+                        <li>Bash Scripting & Git Workflow</li>
                     </ul>
                 </div>
-
-                <div class="cluster-box border-purple">
-                    <h3>[ E-COMMERCE ECOSYSTEMS & CREATIVE ]</h3>
-                    <ul>
-                        <li><span class="bullet">■</span> WooCommerce Bulk Product Management via REST API</li>
-                        <li><span class="bullet">■</span> Premium Web Hosting Controls & Cloudflare DNS Zones</li>
-                        <li><span class="bullet">■</span> Custom WP Core Plugins (Print Orders, Reviews Engine)</li>
-                        <li><span class="bullet">■</span> Adobe Photoshop (Digital UI Asset Design)</li>
-                    </ul>
-                </div>
-            </div>
-        </main>
-
-        <section class="panel repositories-panel">
-            <div class="panel-header">
-                <span class="panel-title">MODULE_02 // ACTIVE_GITHUB_DEPLOYMENTS</span>
-            </div>
-            <div class="dock-grid">
-                
-                <div class="dock-node" onclick="window.open('https://github.com/Scary-technologies/Server-Checker-Script','_blank')">
-                    <div class="node-tag">NET_SECURITY</div>
-                    <h4>Server-Checker & Port-Scanner</h4>
-                    <p>Multi-threaded Python scripts utilizing ThreadPoolExecutor for rapid port diagnostics and server stability analysis.</p>
-                </div>
-
-                <div class="dock-node" onclick="window.open('https://github.com/Scary-technologies/SMS-Baron','_blank')">
-                    <div class="node-tag">AUTOMATION</div>
-                    <h4>SMS-Baron & Cloudflare Zone</h4>
-                    <p>Automated scripts for stress testing, SMS workflow optimization, and automated Cloudflare DNS zone management.</p>
-                </div>
-
-                <div class="dock-node" onclick="window.open('https://github.com/Scary-technologies/WooCommerce-Bulk-Product-Update-Tool','_blank')">
-                    <div class="node-tag">E-COMMERCE</div>
-                    <h4>WooCommerce Bulk Update & Print</h4>
-                    <p>Python Tkinter GUI tools interacting with WooCommerce REST API alongside custom RTL-optimized print invoice plugins.</p>
-                </div>
-
-                <div class="dock-node" onclick="window.open('https://github.com/Scary-technologies/SokhanNegar','_blank')">
-                    <div class="node-tag">PRODUCTIVITY</div>
-                    <h4>SokhanNegar (PVTT) & WebP Opt</h4>
-                    <p>Speech-to-text Persian engine built with PyQt5, combined with native automation extractors and web asset optimizers.</p>
-                </div>
-
             </div>
         </section>
 
-    </div>
+        <section id="projects" class="reveal">
+            <h2 class="section-title">Featured Repositories</h2>
+            
+            <div class="repo-category">
+                <div class="category-header"><i class="fas fa-shield-alt"></i> System & Network Tools</div>
+                <div class="repo-grid">
+                    <div class="repo-card">
+                        <h3><a href="https://github.com/Scary-technologies/SMS-Baron" target="_blank">SMS-Baron</a></h3>
+                        <p class="repo-desc">SMS automation and load testing suite built fully with Python framework.</p>
+                        <div class="repo-tags">
+                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
+                            <span class="tag-status">Active</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <h3><a href="https://github.com/Scary-technologies/Server-Checker-Script" target="_blank">Server-Checker-Script</a></h3>
+                        <p class="repo-desc">Multi-threaded HTTP status verifier with ThreadPoolExecutor for network management.</p>
+                        <div class="repo-tags">
+                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <h3><a href="https://github.com/Scary-technologies/Port-Scanner" target="_blank">Port-Scanner</a></h3>
+                        <p class="repo-desc">تست امنیت و اسکن پورت‌ها جهت شناسایی آسیب‌پذیری‌های فعال شبکه.</p>
+                        <div class="repo-tags">
+                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
+                            <span class="tag-license">MIT</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <h3><a href="https://github.com/Scary-technologies/Cloudflare-Zone-Manager" target="_blank">Cloudflare-Zone-Manager</a></h3>
+                        <p class="repo-desc">ابزار اتوماسیون مدیریت DNS و زون‌های کلودفلر بر بستر API پایتون.</p>
+                        <div class="repo-tags">
+                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <div class="live-ticker">
-        <div class="ticker-content">
-            SECURE_NODE_ONLINE // PORT_MONITOR: ACTIVE // DATACENTER_LINK: ESTABLISHED // COMPILER_STATUS: NOMINAL // CODENAME: SCARY TECHNOLOGIES...
-        </div>
-    </div>
+            <div class="repo-category">
+                <div class="category-header"><i class="fab fa-wordpress"></i> WooCommerce & WordPress Solutions</div>
+                <div class="repo-grid">
+                    <div class="repo-card">
+                        <h3><a href="https://github.com/Scary-technologies/WooCommerce-Bulk-Product-Update-Tool" target="_blank">WooCommerce-Bulk-Update</a></h3>
+                        <p class="repo-desc">Python GUI tool for bulk operations via WooCommerce REST API using Tkinter interface.</p>
+                        <div class="repo-tags">
+                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <h3><a href="https://github.com/Scary-technologies/WebP-Optimizer-Pro" target="_blank">WebP-Optimizer-Pro</a></h3>
+                        <p class="repo-desc">افزونه پیشرفته وردپرس جهت فشرده‌سازی و تبدیل خودکار تصاویر به فرمت نسل جدید WebP.</p>
+                        <div class="repo-tags">
+                            <span class="tag-tech"><i class="fab fa-php"></i> PHP</span>
+                            <span class="tag-archived">Archived</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="repo-category">
+                <div class="category-header"><i class="fas fa-bolt"></i> Productivity & Media Tools</div>
+                <div class="repo-grid">
+                    <div class="repo-card">
+                        <h3><a href="https://github.com/Scary-technologies/SokhanNegar" target="_blank">SokhanNegar (PVTT)</a></h3>
+                        <p class="repo-desc">سیستم هوشمند تبدیل گفتار به متن فارسی با استفاده از SpeechRecognition و PyQt5.</p>
+                        <div class="repo-tags">
+                            <span class="tag-tech"><i class="fab fa-python"></i> Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <p>Ready to build robust infrastructures or automate operations? Drop a line.</p>
+                <div class="social-grid">
+                    <a href="https://github.com/Scary-technologies" target="_blank" class="social-btn">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/ali-mirshahi-507948248" target="_blank" class="social-btn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:ali.mirshahi@example.com" class="social-btn">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ali Mirshahi (PR-M). Engineered for performance.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
