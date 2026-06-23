@@ -1,0 +1,133 @@
+:root {
+    --bg-base: #0d0d0c;         /* مشکی کربنی مات */
+    --color-raw-leather: #9e7b66; /* رنگ چرم طبیعی خام */
+    --text-pure: #f4f1ea;        /* سفید استخوانی */
+    --text-dim: #66635f;         /* خاکستری دودی */
+    --ease-sublime: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-pure);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* بوم پس‌زمینه تعاملی ذرات */
+#ambient-canvas {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 1; pointer-events: none;
+    opacity: 0.6;
+}
+
+/* کرسر جادویی معکوس‌کننده رنگ (Inverter Cursor) */
+.magnetic-cursor {
+    width: 20px; height: 20px;
+    background-color: var(--text-pure);
+    border-radius: 50%; position: fixed;
+    top: 0; left: 0; pointer-events: none; z-index: 9999;
+    mix-blend-mode: difference; /* جادوی معکوس شدن رنگ روی تصاویر و متن‌ها */
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+/* خط پیشرفت اسکرول */
+.scroll-progress {
+    position: fixed; top: 0; left: 0; width: 0%; height: 2px;
+    background-color: var(--color-raw-leather); z-index: 1000;
+}
+
+/* هدر مینیمال */
+.studio-header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    padding: 40px 6%;
+}
+.header-wrap {
+    display: flex; justify-content: space-between; align-items: center;
+}
+.studio-badge {
+    font-size: 0.75rem; letter-spacing: 3px; color: var(--text-dim);
+}
+.studio-logo {
+    font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;
+}
+.nav-toggle {
+    background: none; border: none; cursor: none;
+    display: flex; flex-direction: column; gap: 6px;
+}
+.nav-toggle .line {
+    width: 30px; height: 1px; background-color: var(--text-pure);
+    transition: 0.3s;
+}
+
+/* بخش مانیفست */
+.manifesto-section {
+    min-height: 100vh; padding: 200px 8% 100px 8%;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.section-num {
+    font-size: 0.8rem; color: var(--color-raw-leather);
+    letter-spacing: 2px; display: block; margin-bottom: 30px;
+}
+.huge-statement {
+    font-size: 7vw; font-weight: 300; line-height: 1.1; letter-spacing: -2px;
+}
+.highlight-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-pure);
+}
+.manifesto-text {
+    max-width: 500px; margin-top: 60px; align-self: flex-end;
+}
+.manifesto-text p {
+    font-size: 1.1rem; line-height: 1.9; color: var(--text-dim);
+    text-align: justify;
+}
+
+/* بخش گالری ادیتوریال */
+.editorial-section {
+    padding: 100px 8%; position: relative; z-index: 2;
+}
+.interactive-gallery {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10%; margin-top: 80px;
+}
+.editorial-card {
+    position: relative; width: 100%; will-change: transform;
+}
+.editorial-card:nth-child(2) { margin-top: 150px; } /* عدم تقارن بصری لوکس */
+
+.card-inner {
+    background: #141413; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+.image-box {
+    width: 100%; height: 60vh; overflow: hidden;
+    position: relative;
+}
+.image-box img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.7) contrast(1.05);
+    transition: transform 1.2s var(--ease-sublime);
+}
+.editorial-card:hover .image-box img {
+    transform: scale(1.05);
+}
+.card-info-panel {
+    margin-top: 25px;
+}
+.card-info-panel h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 8px;}
+.card-info-panel p { font-size: 0.9rem; color: var(--text-dim); }
+
+/* فوتر استودیو */
+.studio-footer {
+    padding: 80px 8%; border-top: 1px solid #1a1a19;
+    position: relative; z-index: 2; text-align: center;
+    color: var(--text-dim); font-size: 0.85rem;
+}
