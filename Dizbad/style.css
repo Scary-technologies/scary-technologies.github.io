@@ -1,5 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
+/* تعریف فونت وزیرمتن به صورت آفلاین و محلی */
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Regular.woff2') format('woff2'),
+         url('fonts/Vazirmatn-Regular.woff2') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazir-Bold.woff2') format('woff2'),
+         url('fonts/Vazir-Bold.woff2') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Regular.woff2') format('woff2'),
+         url('fonts/Vazirmatn-Regular.woff2') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+:root {
+    --primary: #1b4332;
+    --accent: #d4af37;
+    --dark: #0b1912;
+    --light: #f4f7f5;
+    --glass: rgba(255, 255, 255, 0.04);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Vazirmatn', sans-serif; scroll-behavior: smooth;
+}
 :root {
     --primary: #1b4332;
     --accent: #d4af37;

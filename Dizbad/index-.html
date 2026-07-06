@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پورتال جامع اکوتوریسم دیزباد بالا</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+            /* تعریف فونت وزیرمتن به صورت آفلاین و محلی */
+    @font-face {
+        font-family: 'Vazirmatn';
+        src: url('fonts/Vazirmatn-Regular.woff2') format('woff2'),
+            url('fonts/Vazirmatn-Regular.woff2') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Vazirmatn';
+        src: url('fonts/Vazir-Bold.woff2') format('woff2'),
+            url('fonts/Vazirmatn-Regular.woff2') format('woff');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Vazirmatn';
+        src: url('fonts/Vazirmatn-Black.woff2') format('woff2'),
+            url('fonts/Vazirmatn-Black.woff') format('woff');
+        font-weight: 900;
+        font-style: normal;
+    }
+
+        :root {
+            --primary: #1b4332;
+            --accent: #d4af37;
+            --dark: #0b1912;
+            --light: #f4f7f5;
+            --glass: rgba(255, 255, 255, 0.04);
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif; scroll-behavior: smooth;
+        }
+        :root {
+            --primary: #1b4332;
+            --accent: #d4af37;
+            --dark: #0b1912;
+            --light: #f4f7f5;
+            --glass: rgba(255, 255, 255, 0.04);
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif; scroll-behavior: smooth;
+        }
+
+        body { background-color: var(--light); color: #333; overflow-x: hidden; }
+
+        /* هدر شیشه‌ای مچ با بک‌گراند */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(11, 25, 18, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        header .logo { color: white; font-size: 1.8rem; font-weight: 900; }
+        header .logo span { color: var(--accent); }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-right: 25px; }
+        nav ul li a { color: #e0e0e0; text-decoration: none; font-weight: 700; transition: 0.3s; }
+        nav ul li a:hover { color: var(--accent); }
+
+        /* هیرو سکشن */
+        .hero {
+            position: relative; height: 100vh;
+            background: url('images/Dizbad.jpg') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(11,25,18,0.6), var(--dark));
+        }
+        .hero-content { position: relative; z-index: 10; max-width: 800px; padding: 20px; }
+        .badge { background: rgba(212, 175, 55, 0.15); border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 50px; font-weight: bold; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 900; margin: 20px 0; }
+        .hero-content h1 span { color: var(--accent); }
+        .hero-content p { font-size: 1.2rem; color: #ccc; margin-bottom: 40px; }
+        .btn-glow { background: var(--accent); color: var(--dark); padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: 900; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); transition: 0.4s; }
+        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(212, 175, 55, 0.7); }
+
+        /* نوار وضعیت آب‌و‌هوا */
+        .weather-widget-bar {
+            background: var(--primary); color: white; display: flex; justify-content: space-around;
+            padding: 15px 5%; font-weight: bold; font-size: 0.95rem; border-bottom: 3px solid var(--accent);
+        }
+        .status-good { color: #52b788; }
+
+        /* بخش‌ها */
+        .container { padding: 90px 8%; }
+        .bg-dark { background-color: var(--dark); color: white; }
+        .section-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 15px; }
+        .section-title.center { text-align: center; }
+        .section-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--accent); margin-top: 10px; }
+        .section-title.center::after { margin: 10px auto 0; }
+        .section-desc { text-align: center; color: #888; margin-bottom: 40px; }
+
+        /* آمار */
+        .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: center; }
+        .about-text p { font-size: 1.15rem; line-height: 1.9; color: #555; }
+        .about-stats { display: flex; gap: 20px; }
+        .stat-card { background: white; padding: 25px; border-radius: 15px; text-align: center; flex: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-bottom: 4px solid var(--accent); }
+        .stat-card h3 { font-size: 2.2rem; color: var(--primary); }
+
+        /* گالری تصاویر لایت‌باکس */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .gallery-item {
+            height: 250px; border-radius: 15px; background-size: cover; background-position: center;
+            position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 20px; transition: 0.4s; cursor: pointer;
+        }
+        .gallery-item::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(transparent, rgba(0,0,0,0.8)); }
+        .gallery-item span { position: relative; color: white; font-weight: bold; font-size: 1.1rem; }
+        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212,175,55,0.2); }
+
+        /* پاپ‌آپ لایت‌باکس */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+            z-index: 2000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px);
+        }
+        .lightbox-content { background: var(--dark); color: white; padding: 40px; border-radius: 20px; max-width: 500px; text-align: center; border: 1px solid var(--accent); }
+        .lightbox-content h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.5rem; }
+        .lightbox-content p { line-height: 1.8; opacity: 0.9; margin-bottom: 25px; }
+        .btn-close { background: white; border: none; padding: 8px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+
+        /* داشبورد فیلتر پیشرفته */
+        .filter-dashboard { background: #eef2ef; padding: 25px; border-radius: 15px; display: flex; gap: 30px; margin-bottom: 40px; justify-content: center; }
+        .filter-group { display: flex; flex-direction: column; gap: 8px; width: 250px; }
+        .filter-group label { font-weight: bold; font-size: 0.95rem; }
+        .filter-group select { padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
+
+        /* کارت‌های نتایج */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .result-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border-top: 4px solid var(--primary); transition: 0.3s; }
+        .result-card:hover { transform: translateY(-5px); border-top-color: var(--accent); }
+        .result-card h3 { margin-bottom: 10px; color: var(--primary); }
+        .card-meta { display: inline-block; background: #eef2ef; padding: 3px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; }
+
+        /* ساختار بخش محاسبات زیست‌محیطی */
+        .calc-box-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+        .calc-inputs { background: rgba(255,255,255,0.03); padding: 35px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .form-group-custom { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .form-group-custom input { padding: 12px; border-radius: 10px; border: none; background: white; font-size: 1rem; font-weight: bold; text-align: center; }
+        .calc-outputs-glass { background: var(--glass); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); padding: 35px; border-radius: 20px; border-right: 5px solid var(--accent); }
+        .calc-outputs-glass p { font-size: 1.2rem; margin-bottom: 15px; }
+        .calc-outputs-glass span { font-weight: 900; }
+
+        /* نقشه */
+        #map { height: 500px; width: 100%; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+
+        /* کدهای اخلاقی */
+        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .rule-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; }
+        .rule-card h4 { color: var(--accent); margin-bottom: 12px; font-size: 1.15rem; }
+        .rule-card p { font-size: 0.95rem; line-height: 1.7; color: #ccc; }
+
+        footer { background: #060d0a; color: #666; text-align: center; padding: 25px; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 10px; padding: 15px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-grid, .calc-box-layout, .filter-dashboard { grid-template-columns: 1fr; flex-direction: column; gap: 15px; }
+            .filter-group { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">دیزباد علیا<span>.</span></div>
+        <nav>
+            <ul>
+                <li><a href="#about">کشف دیزباد</a></li>
+                <li><a href="#gallery">گالری مصور</a></li>
+                <li><a href="#accommodation">برنامه‌ریزی اقامت</a></li>
+                <li><a href="#Banner">مراکز خدمات</a></li>
+                <li><a href="#map-section">نقشه هوایی</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge">مرتفع‌ترین روستای باسوادی ایران</span>
+            <h1>سفر به واحه عمودی <span>دیزباد بالا</span></h1>
+            <p>جایی که سقف هر خانه حیاط دیگریست؛ مهد فرهنگ، بازیافت و طبیعت بکر بینالود.</p>
+            <a href="#accommodation" class="btn-glow">شروع برنامه‌ریزی سفر</a>
+        </div>
+    </section>
+
+    <section class="weather-widget-bar">
+        <div class="widget-item">☀️ وضعیت فعلی: <span id="weather-status">آفتابی و خنک (ییلاقی)</span></div>
+        <div class="widget-item">🚗 وضعیت جاده آسفالت: <span id="road-status" class="status-good">باز و روان</span></div>
+        <div class="widget-item">🦅 شاخص زیست‌محیطی: <span class="status-good">عالی (منطقه حفاظت‌شده)</span></div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 class="section-title">درباره دیزباد بالا</h2>
+                <p>روستای دیزباد بالا واقع در دامنه‌های جنوبی رشته‌کوه بینالود، با نرخ باسوادی ۱۰۰ درصدی از سال ۱۳۵۱، یکی از پیشرفته‌ترین بافت‌های فرهنگی روستایی ایران را دارد. مردم این منطقه به شدت روی حفظ حیات وحش، عدم شکار و تفکیک زباله حساس هستند.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card"><h3>٪۱۰۰</h3><p>باسوادی یونسکو</p></div>
+                <div class="stat-card"><h3>۲,۰۲۰m</h3><p>ارتفاع از سطح دریا</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="container bg-dark">
+        <h2 class="section-title center">گالری تصاویر دیزباد</h2>
+        <p class="section-desc">روی تصاویر کلیک کنید تا نمای بزرگتر و توضیحات هر بخش را ببینید.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background-image: url('images/000000.png');" onclick="openLightbox('بافت پلکانی سنگی', 'معماری خاص روستا که سنگ‌فرش‌ها و سقف‌ها در هم تنیده شده‌اند.')"><span>بافت پلکانی</span></div>
+            <div class="gallery-item" style="background-image: url('images/000000.png');" onclick="openLightbox('ارتفاعات بینالود و قجغر', 'مسیر رویایی کوهنوردی با چشمه‌های پرآب ییلاقی.')"><span>ارتفاعات بینالود</span></div>
+            <div class="gallery-item" style="background-image: url('images/000000.png');" onclick="openLightbox('باغات گیلاس و آلبالو', 'منبع اصلی درآمد پایدار اهالی که در بهار اقیانوسی از شکوفه می‌شود.')"><span>کوچه‌باغ‌های میوه</span></div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-desc"></p>
+            <button class="btn-close" onclick="closeLightbox()">بستن</button>
+        </div>
+    </div>
+
+    <section id="accommodation" class="container">
+        <h2 class="section-title center">برنامه‌ریزی هوشمند مکان اقامت</h2>
+        <p class="section-desc">با استفاده از فیلترهای زیر، دقیقاً مکان مورد نظر خود را بر اساس دسترسی و بودجه پیدا کنید:</p>
+        
+        <div class="filter-dashboard">
+            <div class="filter-group">
+                <label>نوع ترجیحی اسکان:</label>
+                <select id="filter-type" onchange="runAdvancedFilter()">
+                    <option value="all">🌐 همه گزینه‌ها</option>
+                    <option value="stay">🏡 بوم‌گردی و خانه‌های روستایی</option>
+                    <option value="camp">⛺ چادر وamp; کمپینگ در ییلاقات</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>نوع دسترسی جاده‌ای:</label>
+                <select id="filter-access" onchange="runAdvancedFilter()">
+                    <option value="all">🚗 فرقی نمی‌کند</option>
+                    <option value="car">ماشین‌رو (آسفالت/خاکی سبک)</option>
+                    <option value="walk">فقط پیاده‌روی و کوهپیمایی</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="filter-results" class="grid"></div>
+    </section>
+
+    <section id="Banner" class="container bg-dark">
+        <h2 class="section-title center">مراکز خدمات</h2>
+        <p class="section-desc">روی تصاویر کلیک کنید تا نمای بزرگتر و توضیحات هر مرکز را ببینید.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background-image: url('images/000000.png');" onclick="openLightbox('آگهی 1', 'این متن برای نمونه میباشد و می تواند متن درخواستی شما باشد.')"><span>آگهی 1 </span></div>
+            <div class="gallery-item" style="background-image: url('images/000000.png');" onclick="openLightbox('آگهی 2', 'این متن برای نمونه میباشد و می تواند متن درخواستی شما باشد.')"><span>آگهی 2 </span></div>
+            <div class="gallery-item" style="background-image: url('images/000000.png');" onclick="openLightbox('آگهی 3', 'این متن برای نمونه میباشد و می تواند متن درخواستی شما باشد.')"><span>آگهی 3 </span></div>
+        </div>
+    </section>
+
+    <section id="rules-section" class="container bg-dark">
+        <h2 class="section-title center">📜 کدهای اخلاقی و منشور زیست‌محیطی دیزباد</h2>
+        <p class="section-desc">شورای محلی دیزباد قوانین سختی برای حفظ این بهشت دارد. لطفاً قبل از ورود متعهد به رعایت آن‌ها باشید:</p>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h4>🚫 شکار و آسیب به حیوانات ممنوع</h4>
+                <p>دیزباد یک منطقه حفاظت‌شده مردمی است. پرندگان و کبوترهای وحشی دامنه‌ها بخشی از هویت روستا هستند.</p>
+            </div>
+            <div class="rule-card">
+                <h4>🌳 عدم قطع درختان و پوشش گیاهی</h4>
+                <p>بسیاری از درختان کهنسال دره دارای شناسنامه هستند. روشن کردن آتش در مجاورت تنه درختان جریمه محلی دارد.</p>
+            </div>
+            <div class="rule-card">
+                <h4>🗑️ تفکیک کامل زباله از مبدا</h4>
+                <p>روستا مجهز به سیستم بازیافت پیشرفته است. زباله‌های تر و خشک خود را به هیچ وجه مخلوط و رها نکنید.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="map-section" class="container">
+        <h2 class="section-title center">نقشه هوایی زنده ماهواره‌ای دیزباد</h2>
+        <p class="section-desc">موقعیت دقیق تمام نقاط فیلتر شده بالا روی عکس هوایی و ماهواره‌ای منطقه ست شده است.</p>
+        
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <p>طراحی شده برای معرفی فرهنگ و طبیعت زیبای دیزباد بالا | ۱۴۰۵</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // ─── دیتاست پیکربندی نقشه (دیتا و اپلیکیشن نقشه کامپایل شده) ───
+        const MAP_CONFIG = {
+          imageUrl: 'my-huge-map.jpg',
+          imageWidth: 2000,
+          imageHeight: 2000,
+        };
+
+        const TOURIST_PLACES = [
+          {
+            name: 'کمپینگ کوهستانی اول',
+            type: 'camp',
+            color: '#4CAF50',
+            coords: [800, 500],
+            status: 'ظرفیت محدود',
+            desc: 'یک کمپ دنج در دل طبیعت کوهستانی با امکانات اولیه و هوای پاک.',
+            phone: '۰۹۱۲۳۴۵۶۷۸۹',
+            time: 'شبانه‌روزی',
+            images: ['img/camp1-1.jpg', 'img/camp1-2.jpg'],
+          },
+          {
+            name: 'مجموعه اسکان صدف',
+            type: 'housing',
+            color: '#2196F3',
+            coords: [1200, 1100],
+            status: 'نیاز به رزرو',
+            desc: 'مجموعه‌ای مدرن با اتاق‌های استاندارد و خدمات کامل برای اقامت راحت.',
+            phone: '02144444444',
+            time: 'پذیرش تا ساعت ۲۲',
+            images: ['img/housing1-1.jpg', 'img/housing1-2.jpg'],
+          },
+          {
+            name: 'رستوران سنتی البرز',
+            type: 'restaurant',
+            color: '#FF5722',
+            coords: [700, 900],
+            status: 'محبوب توریست‌ها',
+            desc: 'غذاهای اصیل ایرانی در فضایی سنتی با چشم‌اندازی بی‌نظیر از طبیعت.',
+            phone: '۰۹۱۱۱۱۱۱۱۱۱',
+            time: '۱۲ ظهر تا ۲۳',
+            images: ['img/restaurant1-1.jpg'],
+          },
+        ];
+
+        // ─── دیتابیس اقامتگاه‌های بخش فیلتر پیشرفته چندگانه ───
+        const destinations = [
+            { name: "🏡 اقامتگاه بوم‌گردی مرکزی دیزباد", type: "stay", access: "car", price: 400000, desc: "واقع در بافت اصلی کوچه باغ‌ها با دسترسی آسان ماشین‌رو و ترانسفر صمیمانه." },
+            { name: "🏡 بوم‌گردی صخره‌ای ییلاق", type: "stay", access: "walk", price: 550000, desc: "منطقه‌ای مرتفع که برای دسترسی نیاز به ۱۰ دقیقه پیاده‌روی در مسیر مالرو دارد اما دید آن عالیست." },
+            { name: "⛺ سایت کمپینگ چشمه ییلاقی", type: "camp", access: "walk", price: 50000, desc: "بالاترین نقطه مجاز کمپ در نزدیکی سرچشمه اصلی کوهستان، کاملاً دنج و بکر." },
+            { name: "⛺ عوارضی و سکوی کمپ پایین‌دست", type: "camp", access: "car", price: 70000, desc: "نزدیک به جاده خاکی سبک، دارای سکوهای بتنی برای برپایی راحت چادر خانواده‌ها." },
+            { name: "🏡 کلبه چوبی آشیانه افرا", type: "stay", access: "walk", price: 650000, desc: "سازه‌ای تمام چوب در دل شیب کوهستان، احاطه شده با درختان کهنسال و صدای همیشگی رودخانه." },
+            { name: "🏡 سوئیت سنتی چشم‌انداز بالا", type: "stay", access: "car", price: 480000, desc: "واقع در بالاترین محله روستا با پارکینگ اختصاصی و بالکنی بزرگ رو به معماری پلکانی دیزباد." },
+            { name: "⛺ محوطه کمپ باغ توت", type: "camp", access: "car", price: 90000, desc: "باغی مسطح و محصور با امنیت بالا، دارای سرویس بهداشتی و دسترسی راحت به سوپرمارکت محله." },
+            { name: "🏡 خانه مسافر باغ‌نظر", type: "stay", access: "walk", price: 350000, desc: "خانه‌ای قدیمی با معماری سنگی و گِلی، فضایی نوستالژیک در قلب کوچه‌باغ‌های فرعی." },
+            { name: "⛺ کلبه‌های درختی و کمپ دشت بالا", type: "camp", access: "walk", price: 120000, desc: "ترکیبی از سکوهای معلق درختی و فضای باز برای چادر زدن، مخصوص علاقه‌مندان به ستاره‌نگری در شب." },
+            { name: "🏡 عمارت تاریخی خان‌نشین", type: "stay", access: "car", price: 800000, desc: "بزرگ‌ترین اقامتگاه سنتی روستا با حیاط درندشت، تالار آینه‌کاری شده و تجهیزات کامل رفاهی." },
+            { name: "🏡 سوئیت صخره‌ای آفتاب‌گیر", type: "stay", access: "walk", price: 500000, desc: "سوئیتی دنج تراشیده شده در دل سنگ، با پنجره‌ای بزرگ رو به دره و طلوع آفتاب بی‌نظیر منطقه." },
+            { name: "⛺ کمپ ساحلی رودخانه دیزباد", type: "camp", access: "walk", price: 60000, desc: "برپایی چادر در مجاورت مستقیم رودخانه، دارای سایه‌سار طبیعی درختان سپیدار و چنار." },
+            { name: "🏡 اقامتگاه بوم‌گردی بادگیر سنتی", type: "stay", access: "car", price: 420000, desc: "تجربه‌ای خاص در معماری سازگار با بادهای معروف منطقه، خنک در تابستان بدون نیاز به کولر." },
+            { name: "⛺ سایت کمپینگ دشت گردو", type: "camp", access: "walk", price: 85000, desc: "فضایی باز و مسطح در میان درختان گردوی کهنسال، ایده‌آل برای گروه‌های کوهنوردی پرجمعیت." },
+            { name: "🏡 کلبه سوئیسی شیب‌خاک", type: "stay", access: "car", price: 750000, desc: "سازه‌ای مدرن و شیک در حاشیه روستا با جاده آسفالت، مناسب برای سفرهای دونفره و لوکس." }
+        ];
+
+        // سیستم لود و فیلتر داینامیک خروجی‌ها
+        function runAdvancedFilter() {
+            const selectedType = document.getElementById('filter-type').value;
+            const selectedAccess = document.getElementById('filter-access').value;
+            const resultsContainer = document.getElementById('filter-results');
+            
+            resultsContainer.innerHTML = ''; 
+
+            destinations.forEach(item => {
+                const matchType = (selectedType === 'all' || item.type === selectedType);
+                const matchAccess = (selectedAccess === 'all' || item.access === selectedAccess);
+
+                if (matchType && matchAccess) {
+                    const card = document.createElement('div');
+                    card.className = 'result-card';
+                    card.innerHTML = `
+                        <span class="card-meta">${item.type === 'stay' ? '🏡 بوم‌گردی' : '⛺ کمپینگ'} | ${item.access === 'car' ? '🚗 ماشین‌رو' : '🥾 پیاده‌روی'}</span>
+                        <h3>${item.name}</h3>
+                        <p style="color:#555; font-size:0.95rem; line-height:1.6; margin-bottom:15px;">${item.desc}</p>
+                        <strong style="color:#1b4332;">هزینه پایه: ${item.price.toLocaleString()} تومان</strong>
+                    `;
+                    resultsContainer.appendChild(card);
+                }
+            });
+        }
+
+        // سیستم مدیریت لایت‌باکس گالری تصاویر
+        function openLightbox(title, desc) {
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-desc').textContent = desc;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // ─── راه‌اندازی و موتور کانفیگ نقشه لایفلت ───
+        const bounds = [[0, 0], [MAP_CONFIG.imageHeight, MAP_CONFIG.imageWidth]];
+
+        const map = L.map('map', {
+          crs: L.CRS.Simple,
+          minZoom: -2,
+          maxZoom: 3,
+          zoomDelta: 1,
+          zoomSnap: 0.5,
+          preferCanvas: true,
+          zoomControl: false,
+          attributionControl: false,
+        });
+
+        L.imageOverlay(MAP_CONFIG.imageUrl, bounds).addTo(map);
+        map.setMaxBounds(bounds);
+        map.fitBounds(bounds);
+
+        L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+        const layers = {
+          camp:       L.layerGroup().addTo(map),
+          housing:    L.layerGroup().addTo(map),
+          restaurant: L.layerGroup().addTo(map),
+        };
+
+        L.control.layers(null, {
+          '⛺ محل‌های کمپ':       layers.camp,
+          '🏢 مجتمع‌های اسکان':  layers.housing,
+          '🍔 رستوران‌ها':        layers.restaurant,
+        }, { collapsed: true, position: 'topright' }).addTo(map);
+
+        function createCustomIcon(color) {
+          return L.divIcon({
+            className: '',
+            html: `<div class="custom-marker" style="background:${color}; width:20px; height:20px; border-radius:50%; border:2px solid white; box-shadow:0 0 8px rgba(0,0,0,0.4);"></div>`,
+            iconSize: [20, 20],
+            iconAnchor: [10, 10],
+          });
+        }
+
+        TOURIST_PLACES.forEach(place => {
+          if (!layers[place.type]) return;
+          const marker = L.marker(place.coords, { icon: createCustomIcon(place.color) });
+          marker.bindPopup(`<b>${place.name}</b><br>${place.desc}<br>📞 ${place.phone}`);
+          marker.addTo(layers[place.type]);
+        });
+
+        // اجرای توابع اولیه در هنگام بالا آمدن صفحه
+        document.addEventListener("DOMContentLoaded", () => {
+            runAdvancedFilter();
+        });
+    </script>
+</body>
+</html>
