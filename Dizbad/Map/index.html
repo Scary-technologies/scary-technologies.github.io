@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>نقشه توریستی هوشمند</title>
+  <link rel="stylesheet" href="lib/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-header">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="جستجوی مکان..."
+        oninput="searchLocation()"
+        autocomplete="off"
+        aria-label="جستجوی مکان توریستی"
+      />
+      <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="پاک کردن جستجو">✕</button>
+    </div>
+    <div id="searchResults" class="search-results" role="listbox" aria-label="نتایج جستجو"></div>
+  </div>
+
+  <div id="coords-box" aria-live="polite" aria-label="مختصات مکان‌نما"></div>
+
+  <div class="fab-container">
+    <button class="fab-btn" onclick="toggleFullscreen()" title="تمام‌صفحه" aria-label="حالت تمام‌صفحه">⛶</button>
+  </div>
+
+  <div id="map" role="application" aria-label="نقشه توریستی"></div>
+
+  <div id="bottomSheet" class="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-handle" onclick="closeSheet()" aria-label="بستن پنل"></div>
+    <button class="close-sheet-btn" onclick="closeSheet()" aria-label="بستن">✕</button>
+
+    <div class="sheet-content">
+      <div class="sheet-header">
+        <h2 id="sheetTitle" class="sheet-title"></h2>
+        <span id="sheetBadge" class="sheet-badge"></span>
+      </div>
+
+      <div class="gallery-container" id="galleryContainer">
+        <div class="gallery-wrapper" id="galleryWrapper"></div>
+        <button class="gallery-nav prev" onclick="moveGallery(-1)" aria-label="تصویر قبلی">&#8250;</button>
+        <button class="gallery-nav next" onclick="moveGallery(1)" aria-label="تصویر بعدی">&#8249;</button>
+        <div class="gallery-dots" id="galleryDots"></div>
+      </div>
+
+      <div class="sheet-info-grid">
+        <div class="info-item">
+          <span class="info-label">⏰ ساعت کاری</span>
+          <span class="info-value" id="sheetTime"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">📞 تماس</span>
+          <a class="info-value phone-link" id="sheetPhone" href="#"></a>
+        </div>
+      </div>
+
+      <p id="sheetDesc" class="sheet-desc"></p>
+    </div>
+  </div>
+
+  <script src="lib/leaflet/leaflet.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
