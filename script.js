@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --- 3. Terminal Typewriter Effect --- */
-    const terminalText = "Loading skills... \n> Python [██████████] 100%\n> Network Sec [██████████] 100%\n> Linux SysAdmin [██████████] 100%\n\n> System Architect Ready.";
+    const terminalText = "Loading skills... \n> Python [██████████] 100%\n> Network Sec [██████████] 100%\n> Linux SysAdmin [██████████] 100%\n> Hardware [██████████] 100%\n Website design [██████████] 100%\n Automation [██████████] 100%\n\n> System Architect Ready.";
     const typewriterElement = document.getElementById('typewriter-text');
     let i = 0;
 
